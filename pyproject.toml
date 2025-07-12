@@ -31,6 +31,8 @@ dev = [
     "pytest-mock>=3.14.1",
     "ruff>=0.12.3",
 ]
+
+[project.optional-dependencies]
 minio = [
     "boto3>=1.39.4",
 ]
