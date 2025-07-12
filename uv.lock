@@ -335,6 +335,14 @@ name = "seeder-py"
 version = "0.0.0"
 source = { editable = "." }
 
+[package.optional-dependencies]
+minio = [
+    { name = "boto3" },
+]
+redis = [
+    { name = "redis", extra = ["hiredis"] },
+]
+
 [package.dev-dependencies]
 dev = [
     { name = "boto3-stubs", extra = ["s3"] },
@@ -343,14 +351,13 @@ dev = [
     { name = "pytest-mock" },
     { name = "ruff" },
 ]
-minio = [
-    { name = "boto3" },
-]
-redis = [
-    { name = "redis", extra = ["hiredis"] },
-]
 
 [package.metadata]
+requires-dist = [
+    { name = "boto3", marker = "extra == 'minio'", specifier = ">=1.39.4" },
+    { name = "redis", extras = ["hiredis"], marker = "extra == 'redis'", specifier = ">=6.2.0" },
+]
+provides-extras = ["minio", "redis"]
 
 [package.metadata.requires-dev]
 dev = [
@@ -360,8 +367,6 @@ dev = [
     { name = "pytest-mock", specifier = ">=3.14.1" },
     { name = "ruff", specifier = ">=0.12.3" },
 ]
-minio = [{ name = "boto3", specifier = ">=1.39.4" }]
-redis = [{ name = "redis", extras = ["hiredis"], specifier = ">=6.2.0" }]
 
 [[package]]
 name = "six"

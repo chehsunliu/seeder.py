@@ -27,7 +27,7 @@ jobs:
         run: uv sync --all-extras
 
       - name: Lint
-        run: uvx ruff check
+        run: uv run ruff check
 
   test:
     runs-on: ubuntu-latest
@@ -58,7 +58,7 @@ jobs:
         run: docker compose up -d minio
 
       - name: Run the tests
-        run: uvx pytest ./tests
+        run: uv run pytest ./tests
 
       - name: Shutdown containers
         if: always()
