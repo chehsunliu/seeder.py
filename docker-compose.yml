@@ -1,0 +1,23 @@
+services:
+  minio:
+    image: minio/minio
+    restart: always
+    ports:
+      - "127.0.0.1:9000:9000"
+      - "127.0.0.1:9001:9001"
+    environment:
+      MINIO_ROOT_USER: admin
+      MINIO_ROOT_PASSWORD: admin-password
+    entrypoint: sh
+    command: >
+      -c '
+      mkdir -p /data/demo-1 &&
+      mkdir -p /data/demo-2 &&
+      mkdir -p /data/demo-3 &&
+      /usr/bin/minio server /data --console-address :9001'
+
+  redis:
+    image: redis:7-alpine
+    restart: always
+    ports:
+      - "127.0.0.1:6379:6379"
