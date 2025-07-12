@@ -1,7 +1,7 @@
 [project]
 name = "seeder-py"
 version = "0.1.0"
-description = "Add your description here"
+description = "A Python library for data seeding, making data preparation for integration testing easier."
 readme = "README.md"
 authors = [
     { name = "chehsunliu", email = "chehsunliu@gmail.com" }
